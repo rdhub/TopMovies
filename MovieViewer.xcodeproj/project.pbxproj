@@ -13,7 +13,7 @@
 		75687F6B1E20D12900453CFE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75687F6A1E20D12900453CFE /* Assets.xcassets */; };
 		75687F6E1E20D12900453CFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75687F6C1E20D12900453CFE /* LaunchScreen.storyboard */; };
 		75687F761E20D2B600453CFE /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75687F751E20D2B600453CFE /* MoviesViewController.swift */; };
-		75687F791E20DD5500453CFE /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75687F781E20DD5500453CFE /* MovieCell.swift */; };
+		75F736231E27571D00738C9A /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F736221E27571D00738C9A /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		75687F6D1E20D12900453CFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75687F6F1E20D12900453CFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75687F751E20D2B600453CFE /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
-		75687F781E20DD5500453CFE /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		75F736221E27571D00738C9A /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,7 @@
 		75687F771E20DD3600453CFE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				75687F781E20DD5500453CFE /* MovieCell.swift */,
+				75F736221E27571D00738C9A /* MovieCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 			files = (
 				75687F641E20D12900453CFE /* AppDelegate.swift in Sources */,
 				75687F761E20D2B600453CFE /* MoviesViewController.swift in Sources */,
-				75687F791E20DD5500453CFE /* MovieCell.swift in Sources */,
+				75F736231E27571D00738C9A /* MovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +396,7 @@
 				75687F741E20D12900453CFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

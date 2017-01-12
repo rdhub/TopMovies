@@ -10,10 +10,9 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet weak var tableView: UITableView!
+class MoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     var movies: [NSDictionary]?
     
     override func viewDidLoad() {
@@ -23,10 +22,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
         // add refresh control to table view
-        tableView.insertSubview(refreshControl, at: 0)
+        collectionView.insertSubview(refreshControl, at: 0)
         
-        tableView.dataSource = self
-        tableView.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
         // Do any additional setup after loading the view.
         
@@ -47,7 +46,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
                     self.movies = dataDictionary["results"] as! [NSDictionary]
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                 }
             }
         }
@@ -59,33 +58,27 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let movies = movies {
             return movies.count
         } else {
             return 0
         }
-        
     }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let movie = movies![indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
         let posterPath = movie["poster_path"] as! String
         
         let baseUrl = "https://image.tmdb.org/t/p/w500/"
         let imageUrl = NSURL(string: baseUrl + posterPath)
         
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
         cell.posterView.setImageWith(imageUrl as! URL)
         
         return cell
+
     }
     
     func refreshControlAction(refreshControl: UIRefreshControl) {
@@ -102,7 +95,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
                     self.movies = dataDictionary["results"] as! [NSDictionary]
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                     // Tell the refreshControl to stop spinning
                     refreshControl.endRefreshing()
                 }
