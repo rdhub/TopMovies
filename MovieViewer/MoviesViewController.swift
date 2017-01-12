@@ -10,10 +10,13 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MoviesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var movies: [NSDictionary]?
+    var filteredMovies: [NSDictionary]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +29,7 @@ class MoviesViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+        searchBar.delegate = self
         // Do any additional setup after loading the view.
         
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -46,10 +49,12 @@ class MoviesViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
                     self.movies = dataDictionary["results"] as! [NSDictionary]
+                    self.filteredMovies = self.movies
                     self.collectionView.reloadData()
                 }
             }
         }
+        
         task.resume()
     }
 
@@ -59,7 +64,7 @@ class MoviesViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let movies = movies {
+        if let movies = filteredMovies {
             return movies.count
         } else {
             return 0
@@ -69,7 +74,7 @@ class MoviesViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies![indexPath.row]
+        let movie = filteredMovies[indexPath.row]
         let posterPath = movie["poster_path"] as! String
         
         let baseUrl = "https://image.tmdb.org/t/p/w500/"
@@ -95,6 +100,7 @@ class MoviesViewController: UIViewController, UICollectionViewDataSource, UIColl
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
                     self.movies = dataDictionary["results"] as! [NSDictionary]
+                    self.filteredMovies = self.movies
                     self.collectionView.reloadData()
                     // Tell the refreshControl to stop spinning
                     refreshControl.endRefreshing()
@@ -104,6 +110,31 @@ class MoviesViewController: UIViewController, UICollectionViewDataSource, UIColl
         task.resume()
     }
     
+    // This method updates filteredData based on the text in the Search Box
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // When there is no text, filteredData is the same as the original data
+        // When user has entered text into the search box
+        // Use the filter method to iterate over all items in the data array
+        // For each item, return true if the item should be included and false if the
+        // item should NOT be included
+        filteredMovies = searchText.isEmpty ? movies : movies!.filter({(movieData: NSDictionary) -> Bool in
+            // If dataItem matches the searchText, return true to include it
+            
+            return (movieData["original_title"] as! String).range(of: searchText, options: .caseInsensitive) != nil
+        })
+        
+        collectionView.reloadData()
+    }
+    
+    // called when keyboard search button pressed
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    
+    @IBAction func onTap(_ sender: AnyObject) {
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 
