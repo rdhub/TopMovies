@@ -182,6 +182,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBAction func onTap(_ sender: AnyObject) {
         searchBar.endEditing(true)
+        print("asdfl")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
