@@ -34,7 +34,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src=http://i.imgur.com/CqkynrQ.gif title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src=http://i.imgur.com/oJJGseM.gif title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -42,7 +42,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
-I had difficulty implementing the search bar because I did not know how to filter the array of NSDictionaries. I kept looking up stuff on Google and the Swift Libraries, and I kept trying things on XCode until it finally worked.
+I had difficulty implementing the search bar because I did not know how to filter the array of NSDictionaries. I kept looking up stuff on Google and the Swift Libraries, and I kept trying things on XCode until it finally worked. For some unknown reason, after I added the search bar, push navigation failed to work. Even when I undo'd everything I added using the undo command, it still would not work. I ended up having to revert back to an older version using git reset and then added back everything exactly how it was. This time everything worked properly, even though I did not change anything. I copied everything exactly as I had when it was not working.'
 
 ## License
 
