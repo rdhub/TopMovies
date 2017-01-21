@@ -106,7 +106,7 @@ I did not know how to implement push navigation with the collection view. I spen
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright 2017 Richard Du
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
