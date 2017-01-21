@@ -14,6 +14,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var searchBar = UISearchBar()
+
     var movies: [NSDictionary]?
     var filteredMovies: [NSDictionary]!
     var endpoint: String!
@@ -29,7 +30,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+
         searchBar.sizeToFit()
         searchBar.delegate = self
         navigationItem.titleView = searchBar
@@ -78,9 +79,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        
-        
-        let movie = filteredMovies![indexPath.row]
+
+        let movie = filteredMovies[indexPath.row]
         let title = movie["title"] as? String
         let overview = movie["overview"] as? String
         
@@ -148,6 +148,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     
                     self.movies = dataDictionary["results"] as! [NSDictionary]
+                    
                     self.tableView.reloadData()
                     // Tell the refreshControl to stop spinning
                     refreshControl.endRefreshing()
@@ -168,8 +169,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             // If dataItem matches the searchText, return true to include it
             
             return (movieData["original_title"] as! String).range(of: searchText, options: .caseInsensitive) != nil
-            })
-                    
+
+        })
+        
         tableView.reloadData()
     }
     
@@ -195,7 +197,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
      // Pass the selected object to the new view controller.
         let cell = sender as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)
-        let movie = filteredMovies![indexPath!.row]
+
+        let movie = filteredMovies[indexPath!.row]
+
         
         let detailViewController = segue.destination as! DetailViewController
         detailViewController.movie = movie
