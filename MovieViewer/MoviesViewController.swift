@@ -184,12 +184,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         searchBar.endEditing(true)
     }
     
-    
-    @IBAction func onTap(_ sender: AnyObject) {
-        searchBar.endEditing(true)
-    }
-    
-    
      // MARK: - Navigation
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
