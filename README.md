@@ -42,7 +42,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
-I had difficulty implementing the search bar because I did not know how to filter the array of NSDictionaries. I kept looking up stuff on Google and the Swift Libraries, and I kept trying things on XCode until it finally worked. For some unknown reason, after I added the search bar, push navigation failed to work. Even when I undo'd everything I added using the undo command, it still would not work. I ended up having to revert back to an older version using git reset and then added back everything exactly how it was. This time everything worked properly, even though I did not change anything. I copied everything exactly as I had when it was not working.'
+I had difficulty implementing the search bar because I did not know how to filter the array of NSDictionaries. I kept looking up stuff on Google and the Swift Libraries, and I kept trying things on XCode until it finally worked.
 
 ## License
 
@@ -79,7 +79,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [x] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
-- [ ] Customize the navigation bar.
+- [x] Customize the navigation bar.
 
 The following **additional** features are implemented:
 
@@ -101,6 +101,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+I did not know how to implement push navigation with the collection view. I spent a lot of time searching on Google but could not find a solution that I understood. In the end, I decided to restart and remade the entire app with table view. I also had trouble with adding a search bar with a navigation bar. I tried finding a storyboard solution, but eventually settled for a code based search bar. For some unknown reason, after I added the search bar, push navigation failed to work. Even when I undo'd everything I added using the undo command, it still would not work. I ended up having to revert back to an older version using git reset and then added back everything exactly how it was. This time everything worked properly, even though I did not change anything. I copied everything exactly as I had when it was not working.'
 
 ## License
 
